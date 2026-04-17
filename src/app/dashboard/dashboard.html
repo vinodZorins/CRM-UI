@@ -1,0 +1,55 @@
+<div class="dashboard-container">
+  <h2>Leads Overview</h2>
+
+  <!-- 4-column grid layout -->
+  <mat-grid-list cols="4" rowHeight="150px" gutterSize="16px">
+    
+    <!-- Widget 1: Total Leads -->
+    <mat-grid-tile>
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Total Leads</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h1 class="bold-number">1,254</h1>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- Widget 2: New Leads Today -->
+    <mat-grid-tile>
+      <mat-card class="dashboard-card status-new">
+        <mat-card-header>
+          <mat-card-title>New Leads</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h1 class="bold-number">+34</h1>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- Widget 3: Conversion Rate -->
+    <mat-grid-tile>
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Conversion</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h1 class="bold-number">12.5%</h1>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- Widget 4: Quick Action -->
+    <mat-grid-tile>
+      <mat-card class="dashboard-card action-card">
+        <mat-card-content>
+          <button mat-raised-button color="primary" routerLink="/leads/lead-form">
+            + Add New Lead
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>
