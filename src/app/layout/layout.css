@@ -1,27 +1,110 @@
-.crm-container { height: 100vh; width: 100vw; }
-.crm-sidebar { width: 260px; background-color: #1e293b; color: white; }
-.crm-logo { padding: 24px; text-align: center; border-bottom: 1px solid #334155; }
-.crm-logo h2 { color: #38bdf8; margin: 0; }
+/* ===== CONTAINER ===== */
+.crm-container {
+  height: 100vh;
+  width: 100vw;
+}
 
-/* Invert nav-list font colors to fit the dark sidebar */
-.crm-sidebar mat-nav-list a { color: #cbd5e1; }
-.crm-sidebar mat-nav-list a.active { background-color: #334155; color: #38bdf8; }
-.crm-sidebar mat-icon { color: inherit; }
+/* ===== SIDEBAR ===== */
+.crm-sidebar {
+  width: 260px;
+  background-color: #1e293b;
+  color: white;
 
-.crm-toolbar { background: white; border-bottom: 1px solid #e2e8f0; }
-.page-title { font-weight: 600; font-size: 20px; }
-.spacer { flex: 1 1 auto; }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-/* Custom Search Bar in Toolbar */
+/* LOGO */
+.crm-logo {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #334155;
+}
+
+.crm-logo h2 {
+  color: #38bdf8;
+  margin: 0;
+}
+
+/* NAV LINKS */
+.crm-sidebar mat-nav-list {
+  padding-top: 10px;
+}
+
+.crm-sidebar a {
+  display: block;
+  padding: 10px 16px;
+  color: #cbd5e1;
+  border-radius: 6px;
+  margin: 4px 8px;
+  text-decoration: none;
+}
+
+/* ICON + TEXT */
+.link-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.link-text {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.link-content mat-icon {
+  color: #ffffff;
+}
+
+/* ACTIVE LINK */
+a.active {
+  background-color: #334155;
+}
+
+a.active .link-text,
+a.active mat-icon {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+/* ===== SIDEBAR FOOTER (LOGOUT) ===== */
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid #334155;
+}
+
+.logout-link {
+  color: #fca5a5;
+}
+
+/* ===== TOOLBAR ===== */
+.crm-toolbar {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0 16px;
+}
+
+.page-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* ===== SEARCH BAR ===== */
 .search-bar {
   display: flex;
   align-items: center;
   background: #f1f5f9;
   border-radius: 8px;
   padding: 0 12px;
-  margin-left: 32px;
-  width: 400px;
+  margin-left: 20px;
+  width: 300px;
 }
+
 .search-bar input {
   border: none;
   background: transparent;
@@ -29,69 +112,46 @@
   width: 100%;
   outline: none;
 }
-.crm-sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Pushes the footer to the bottom */
+
+/* ===== CONTENT ===== */
+.crm-content {
+  padding: 20px;
+  background-color: #f8fafc;
+  min-height: calc(100vh - 64px); /* toolbar height adjust */
 }
 
-.sidebar-footer {
-  padding: 16px;
-  border-top: 1px solid #334155;
+.nav-link {
+  color: #ffffff;
 }
 
-.logout-link {
-  color: #fca5a5 !important; /* Soft red for logout */
-  width: 100%;
-  text-align: left;
+.nav-link mat-icon {
+  color: #ffffff;
 }
-.crm-content { padding: 24px; background-color: #f8fafc; min-height: 90vh; 
+
+.link-text {
+  color: #ffffff;
 }
-/* Align the icon and text horizontally */
+
 .link-content {
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 100%;
 }
 
-/* Force the text to be pure white */
-.link-text {
-  color: #ffffff !important;
-  font-size: 14px;
+.nav-link.active {
+  background-color: "334155";
 }
 
-/* Force the icons to be pure white */
-.link-content mat-icon {
-  color: #ffffff !important;
-}
-
-/* Highlight the active link with an accent colour */
-.nav-link.active .link-text {
-  color: #38bdf8 !important;
+.nav-link.active .link-text,
+.nav-link.active mat-icon {
+  color: #38bdf8;
   font-weight: 600;
 }
 
-.nav-link.active mat-icon {
-  color: #38bdf8 !important;
+.nav-linlk:hover {
+  background-color: #334155;
 }
 
-/* Optional: Background highlight on active link */
-.nav-link.active {
-  background-color: #334155 !important;
+.crm-sidebar a:hover {
+  background-color: #334155;
 }
-
-/* Flex scorecards */
-.metrics-grid { display: flex; gap: 16px; margin-bottom: 24px; }
-.metric-card { flex: 1; border-radius: 12px; }
-.metric-card mat-card-content { display: flex; align-items: center; gap: 16px; padding: 16px; }
-
-.metric-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
-.metric-icon.green { background: #dcfce7; color: #15803d; }
-.metric-icon.blue { background: #e0f2fe; color: #0369a1; }
-
-.label { color: #64748b; font-size: 14px; margin: 0; }
-.metric-data h3 { margin: 4px 0 0; font-size: 24px; }
-
-.table-card { border-radius: 12px; }
-.crm-table { width: 100%; }

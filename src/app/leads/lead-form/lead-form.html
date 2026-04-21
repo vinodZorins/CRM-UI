@@ -1,1 +1,67 @@
-<p>lead-form works!</p>
+<div class="form-bg">
+
+  <div class="glass-card">
+
+    <h2>{{ isEditMode ? 'Edit Lead' : 'Add Lead' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- Name -->
+      <div class="field">
+        <label>Name</label>
+        <input type="text" formControlName="name" placeholder="Enter name">
+      </div>
+
+      <!-- Email -->
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Enter email">
+
+        <!-- <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+          Invalid email
+        </small> -->
+      </div>
+
+      <!-- Phone -->
+      <div class="field">
+        <label>Phone</label>
+        <input type="text" formControlName="phone" placeholder="Enter phone">
+      </div>
+
+      <!-- COMPANY DROPDOWN -->
+      <div class="field">
+        <label>Company</label>
+        <select formControlName="companyId" required>
+          <option value="">Select Company</option>
+          <option *ngFor="let c of companies" [value]="c.id">{{ c.companyName }}</option>
+        </select>
+      </div>
+
+      <!-- Status -->
+      <div class="field">
+        <label>Status</label>
+        <select formControlName="status">
+          <option value="">Select Status</option>
+          <option value="NEW">NEW</option>
+          <option value="CONTACTED">CONTACTED</option>
+          <option value="WON">WON</option>
+          <option value="LOST">LOST</option>
+        </select>
+      </div>
+
+      <!-- Score -->
+      <div class="field">
+        <label>Score</label>
+        <input type="text" formControlName="score" placeholder="Enter Score">
+      </div>
+
+      <!-- Button -->
+      <button class="submit-btn" [disabled]="form.invalid">
+        {{ isEditMode ? 'Update Lead ' : 'Create Lead ' }}
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,82 @@
+/* Background */
+.form-bg {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+/* Glass Card */
+.glass-card {
+  width: 380px;
+  padding: 25px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+/* Title */
+h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 13px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Inputs */
+input, select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+
+  transition: 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+}
+
+/* Button */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #6366f1, #7c3aed);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(99,102,241,0.4);
+}
+
+.small {
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
+}

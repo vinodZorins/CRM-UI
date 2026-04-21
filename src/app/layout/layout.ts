@@ -14,7 +14,7 @@ import { MatChipsModule } from '@angular/material/chips';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [RouterLink,
+  imports: [RouterLink, RouterOutlet,
     CommonModule, MatSidenavModule, MatToolbarModule,
     MatListModule, MatIconModule, MatButtonModule,
     MatCardModule, MatTableModule, MatInputModule, MatChipsModule, RouterLinkActive],
@@ -23,11 +23,6 @@ import { MatChipsModule } from '@angular/material/chips';
 })
 export class LayoutComponent {
 
-  displayedColumns: string[] = ['name', 'company', 'status', 'value', 'actions'];
-  
-  leads: any[] = [
-    
-  ];
 
   constructor(private router: Router) {}
 

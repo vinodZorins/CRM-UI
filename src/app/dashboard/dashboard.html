@@ -6,36 +6,36 @@
     
     <!-- Widget 1: Total Leads -->
     <mat-grid-tile>
-      <mat-card class="dashboard-card">
+      <mat-card class="dashboard-card" routerLink="/leads" style="cursor: pointer;">
         <mat-card-header>
           <mat-card-title>Total Leads</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <h1 class="bold-number">1,254</h1>
+          <h1 class="bold-number">{{ dashboardData?.totalLeads}}</h1>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
 
     <!-- Widget 2: New Leads Today -->
     <mat-grid-tile>
-      <mat-card class="dashboard-card status-new">
+      <mat-card class="dashboard-card status-new" routerLink="/leads" style="cursor: pointer;">
         <mat-card-header>
           <mat-card-title>New Leads</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <h1 class="bold-number">+34</h1>
+          <h1 class="bold-number">{{ dashboardData?.newLeads}}</h1>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
 
     <!-- Widget 3: Conversion Rate -->
     <mat-grid-tile>
-      <mat-card class="dashboard-card">
+      <mat-card class="dashboard-card" routerLink="/leads" style="cursor: pointer;">
         <mat-card-header>
           <mat-card-title>Conversion</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <h1 class="bold-number">12.5%</h1>
+          <h1 class="bold-number">{{ dashboardData?.conversionRate}}%</h1>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -44,7 +44,7 @@
     <mat-grid-tile>
       <mat-card class="dashboard-card action-card">
         <mat-card-content>
-          <button mat-raised-button color="primary" routerLink="/leads/lead-form">
+          <button mat-raised-button color="primary" routerLink="/lead-form">
             + Add New Lead
           </button>
         </mat-card-content>

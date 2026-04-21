@@ -1,0 +1,47 @@
+.lead-container {
+  padding: 20px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+}
+
+mat-chip {
+  color: white;
+}
+
+.status-chip {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: white;
+  font-weight: 500;
+}
+
+.status-new {
+  background-color: #3b82f6;
+}
+
+.status-contacted {
+  background-color: #f59e0b;
+}
+
+.status-won {
+  background-color: #22c55e;
+}
+
+.status-lost {
+  background-color: #ef4444;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: gray;
+}
