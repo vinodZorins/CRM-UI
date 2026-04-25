@@ -23,6 +23,15 @@ mat-chip {
   color: white;
   font-weight: 500;
 }
+.status-new,
+.status-contacted,
+.status-converted,
+.status-lost {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
 
 .status-new {
   background-color: #3b82f6;
@@ -32,8 +41,20 @@ mat-chip {
   background-color: #f59e0b;
 }
 
+.status-progress {
+  background: #f59e0b;
+}
+
 .status-won {
   background-color: #22c55e;
+}
+
+.status-converted {
+  background-color: cyan;
+}
+
+.status-closed {
+  background-color: red;
 }
 
 .status-lost {
@@ -44,4 +65,69 @@ mat-chip {
   text-align: center;
   padding: 20px;
   color: gray;
+}
+
+table {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mat-row:hover {
+  background-color: #f1f5f9;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.table-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  padding: 10px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+}
+
+.empty-state mat-icon {
+  font-size: 60px;
+  color: #cbd5e1;
+}
+
+.empty-state h3 {
+  margin: 10px 0;
+}
+
+.empty-state button {
+  margin-top: 10px;
+}
+
+.mat-row {
+  transition: transform 0.15s ease;
+}
+
+.mat-row:hover {
+  transform: scale(1.01);
+}
+
+.edit-btn mat-icon {
+  color: #2563eb; /* blue */
+}
+
+.delete-btn mat-icon {
+  color: #dc2626; /* red */
+}
+
+/* Hover effects  */
+.edit-btn:hover {
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+.delete-btn:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+.custom-dialog .mat-mdc-dialog-container {
+  border-radius: 16px;
 }

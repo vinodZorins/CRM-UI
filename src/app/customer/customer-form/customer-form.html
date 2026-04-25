@@ -1,0 +1,53 @@
+<div class="form-container">
+
+  <h2>{{ id ? 'Edit Customer' : 'Add Customer' }}</h2>
+
+  <form (ngSubmit)="save()">
+
+    <!-- NAME -->
+    <div class="field">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="customer.name" name="name" required>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="field">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="customer.email" name="email" required>
+    </div>
+
+    <!-- PHONE -->
+    <div class="field">
+      <label>Phone</label>
+      <input type="number" [(ngModel)]="customer.phone" name="phone">
+    </div>
+
+    <!-- COMPANY -->
+    <div class="field">
+      <label>Company</label>
+      <select [(ngModel)]="customer.companyId" name="companyId">
+        <option value="">Select Company</option>
+        <option *ngFor="let c of companies" [value]="c.id">
+          {{ c.companyName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- REQUIREMENT -->
+    <div class="field">
+      <label>Requirement</label>
+      <textarea
+        [(ngModel)]="customer.requirement"
+        name="requirement"
+        rows="4"
+        placeholder="Enter customer requirement...">
+      </textarea>
+    </div>
+
+    <!-- BUTTON -->
+    <button type="submit">
+      {{ id ? 'Update' : 'Create' }}
+    </button>
+
+  </form>
+</div>

@@ -45,4 +45,8 @@ createLead(data: any) {
   getCompanies() {
     return this.http.get<any>(this.COMPANY_API);
   }
+
+   convertLead(id: number, data: any) {
+  return this.http.post(`http://localhost:8081/api/customer/convert/${id}`, data);
+ }
 }

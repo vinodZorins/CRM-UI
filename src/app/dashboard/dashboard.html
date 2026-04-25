@@ -52,4 +52,56 @@
     </mat-grid-tile>
 
   </mat-grid-list>
+
+  
+  <div class="filter-bar">
+
+    <!-- COMPANY -->
+      <mat-label>Company</mat-label>
+      <select [(ngModel)]="selectedCompany" (selectionChange)="onFilterChange()">
+        <option value="">All Companies</option>
+        <option *ngFor="let c of companies" [value]="c.id">
+          {{ c.companyName }}
+        </option>
+      </select>
+
+    <!-- START DATE -->
+      <mat-label>Start Date</mat-label>
+      <input matInput type="date" [(ngModel)]="startDate" (change)="onFilterChange()">
+
+    <!-- END DATE -->
+      <mat-label>End Date</mat-label>
+      <input matInput type="date" [(ngModel)]="endDate" (change)="onFilterChange()">
+
+    <!-- QUICK BUTTONS -->
+    <div class="quick-buttons">
+      <button mat-stroked-button (click)="setToday()">Today</button>
+      <button mat-stroked-button (click)="setLast7Days()">7 Days</button>
+      <button mat-stroked-button (click)="setLast30Days()">30 Days</button>
+      <button mat-button color="warn" (click)="resetFilters()">Reset</button>
+    </div>
+
+  </div>
+
+  <div class="charts-container">
+
+    <!-- PIE -->
+    <div class="chart-box">
+      <h3>Leads Distribution</h3>
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    <!-- BAR -->
+    <div class="chart-box">
+      <h3>Leads Overview</h3>
+      <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="chart-box full-width">
+      <h3>Monthly Leads</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+
+  </div>
+  
 </div>

@@ -13,4 +13,8 @@ export class DashboardServiceTs {
   getDashboard() {
     return this.http.get<any>(this.API);
   }
+
+  getDashboardWithFilter(data: any) {
+  return this.http.post<any>('http://localhost:8081/api/dashboard/filter', data);
+}
 }

@@ -1,0 +1,65 @@
+.deal-container {
+  padding: 20px;
+}
+
+/* HEADER */
+.deal-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-field {
+  width: 300px;
+}
+
+.filter-field {
+  width: 200px;
+}
+
+/* CARD */
+.table-card {
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: white;
+}
+
+/* STAGE COLORS */
+.stage-chip {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+/* COLORS */
+.stage-chip.new {
+  background: #3b82f6;
+}
+
+.stage-chip.negotiation {
+  background: #f59e0b;
+}
+
+.stage-chip.won {
+  background: #22c55e;
+}
+
+.stage-chip.lost {
+  background: #ef4444;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 80px;
+  color: #64748b;
+}
+
+.empty-state mat-icon {
+  font-size: 60px;
+  color: #cbd5e1;
+}

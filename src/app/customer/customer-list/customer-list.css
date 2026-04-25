@@ -1,0 +1,21 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.search-box {
+  width: 300px;
+  margin-bottom: 16px;
+}
+
+table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+tr:hover {
+  background: #f3f4f6;
+}
+

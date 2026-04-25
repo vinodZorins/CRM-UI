@@ -35,7 +35,25 @@ export const routes: Routes = [
         loadComponent: () => import('./leads/lead-form/lead-form').then(m => m.LeadForm),
         canActivate: [authGuard]
       },
-      
+
+      {
+        path: 'customer',
+        loadComponent: () => import('./customer/customer-list/customer-list').then(m => m.Customer),
+        canActivate: [authGuard]
+      },
+
+      {
+        path: 'customer-form',
+        loadComponent: () => import('./customer/customer-form/customer-form').then(m => m.CustomerForm),
+        canActivate: [authGuard]
+      },
+
+      {
+        path: 'customer-form/:id',
+        loadComponent: () => import('./customer/customer-form/customer-form').then(m => m.CustomerForm),
+        canActivate: [authGuard]
+      },
+
       {
         path: 'users',
         loadComponent: () => import('./users/user-list/user-list').then(m => m.UserList),
@@ -47,7 +65,31 @@ export const routes: Routes = [
         loadComponent: () => import('./company/company-list/company-list').then(m => m.CompanyList),
         canActivate: [authGuard]
       },
+
+      {
+        path: 'deals',
+        loadComponent: () => import('./deals/deal-list/deal-list').then(m => m.DealList),
+        canActivate: [authGuard]
+      },
+
+      {
+        path: 'deal-form',
+        loadComponent: () => import('./deals/deal-form/deal-form').then(m => m.DealForm),
+        canActivate: [authGuard]
+      },
+
+      {
+        path: 'deal-kanban',
+        loadComponent: () => import('./deals/deal-kanban/deal-kanban').then(m => m.DealKanban),
+        canActivate: [authGuard]
+      },
       
+      {
+        path: 'deal-form/:id',
+        loadComponent: () => import('./deals/deal-form/deal-form').then(m => m.DealForm),
+        canActivate: [authGuard]
+      },
+
       // Empty path redirects to dashboard if logged in
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       

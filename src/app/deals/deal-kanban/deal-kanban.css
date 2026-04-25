@@ -1,0 +1,97 @@
+.kanban-container {
+  display: flex;
+  gap: 16px;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+/* COLUMN */
+.kanban-column {
+  min-width: 260px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+/* COLUMN COLORS */
+.kanban-column.new {
+  border-top: 4px solid #3b82f6;
+}
+
+.kanban-column.negotiation {
+  border-top: 4px solid #f59e0b;
+}
+
+.kanban-column.won {
+  border-top: 4px solid #22c55e;
+}
+
+.kanban-column.lost {
+  border-top: 4px solid #ef4444;
+}
+
+/* HEADER */
+.kanban-header {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* BADGE */
+.badge {
+  background: #e2e8f0;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+/* DROP AREA */
+.drop-zone {
+  min-height: 400px;
+}
+
+/* CARD */
+.deal-card {
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: grab;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+/* HOVER EFFECT */
+.deal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* DRAG EFFECT */
+.cdk-drag-preview {
+  border-radius: 10px;
+  background: #e0f2fe;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+/* TEXT */
+.deal-card h4 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.deal-card p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: gray;
+}
+
+.amount {
+  font-weight: bold;
+  color: #16a34a;
+}

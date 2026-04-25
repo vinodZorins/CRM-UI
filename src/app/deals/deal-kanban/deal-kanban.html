@@ -1,0 +1,87 @@
+<div class="kanban-container">
+
+  <!-- NEW -->
+  <div class="kanban-column new">
+    <div class="kanban-header">
+      <span>NEW</span>
+      <span class="badge">{{ newDeals.length }}</span>
+    </div>
+
+    <div cdkDropList
+         [cdkDropListData]="newDeals"
+         (cdkDropListDropped)="drop($event, 'NEW')"
+         class="drop-zone">
+
+      <div *ngFor="let deal of newDeals" cdkDrag class="deal-card">
+        <h4>{{ deal.title }}</h4>
+        <p>{{ deal.customerName }}</p>
+        <div class="amount">₹{{ deal.amount }}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NEGOTIATION -->
+  <div class="kanban-column negotiation">
+    <div class="kanban-header">
+      <span>NEGOTIATION</span>
+      <span class="badge">{{ negotiationDeals.length }}</span>
+    </div>
+
+    <div cdkDropList
+         [cdkDropListData]="negotiationDeals"
+         (cdkDropListDropped)="drop($event, 'NEGOTIATION')"
+         class="drop-zone">
+
+      <div *ngFor="let deal of negotiationDeals" cdkDrag class="deal-card">
+        <h4>{{ deal.title }}</h4>
+        <p>{{ deal.customerName }}</p>
+        <div class="amount">₹{{ deal.amount }}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WON -->
+  <div class="kanban-column won">
+    <div class="kanban-header">
+      <span>WON</span>
+      <span class="badge">{{ wonDeals.length }}</span>
+    </div>
+
+    <div cdkDropList
+         [cdkDropListData]="wonDeals"
+         (cdkDropListDropped)="drop($event, 'WON')"
+         class="drop-zone">
+
+      <div *ngFor="let deal of wonDeals" cdkDrag class="deal-card">
+        <h4>{{ deal.title }}</h4>
+        <p>{{ deal.customerName }}</p>
+        <div class="amount">₹{{ deal.amount }}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LOST -->
+  <div class="kanban-column lost">
+    <div class="kanban-header">
+      <span>LOST</span>
+      <span class="badge">{{ lostDeals.length }}</span>
+    </div>
+
+    <div cdkDropList
+         [cdkDropListData]="lostDeals"
+         (cdkDropListDropped)="drop($event, 'LOST')"
+         class="drop-zone">
+
+      <div *ngFor="let deal of lostDeals" cdkDrag class="deal-card">
+        <h4>{{ deal.title }}</h4>
+        <p>{{ deal.customerName }}</p>
+        <div class="amount">₹{{ deal.amount }}</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

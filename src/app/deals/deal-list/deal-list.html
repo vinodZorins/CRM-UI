@@ -1,0 +1,97 @@
+<div class="deal-container">
+
+  <!-- HEADER -->
+  <div class="deal-header">
+
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search Deals</mat-label>
+      <input matInput [(ngModel)]="search" (input)="onFilterChange()" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Stage</mat-label>
+      <mat-select [(ngModel)]="stage" (selectionChange)="onFilterChange()">
+        <mat-option value="">All</mat-option>
+        <mat-option value="NEW">New</mat-option>
+        <mat-option value="NEGOTIATION">Negotiation</mat-option>
+        <mat-option value="WON">Won</mat-option>
+        <mat-option value="LOST">Lost</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" routerLink="/deal-form">
+      <mat-icon>add</mat-icon>
+      Add Deal
+    </button>
+
+  </div>
+
+  <!-- TABLE CARD -->
+  <mat-card class="table-card">
+
+    <table mat-table [dataSource]="deals" class="mat-elevation-z1">
+
+      <!-- TITLE -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let d"> {{ d.title }} </td>
+      </ng-container>
+
+      <!-- CUSTOMER -->
+      <ng-container matColumnDef="customer">
+        <th mat-header-cell *matHeaderCellDef> Customer </th>
+        <td mat-cell *matCellDef="let d"> {{ d.customerName }} </td>
+      </ng-container>
+
+      <!-- AMOUNT -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let d"> ₹{{ d.amount }} </td>
+      </ng-container>
+
+      <!-- STAGE -->
+      <ng-container matColumnDef="stage">
+        <th mat-header-cell *matHeaderCellDef> Stage </th>
+        <td mat-cell *matCellDef="let d">
+          <span class="stage-chip" [ngClass]="d.stage.toLowerCase()">
+            {{ d.stage }}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- ACTIONS -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let d">
+
+          <button mat-icon-button color="primary" [routerLink]="['/deal-form', d.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" (click)="deleteDeal(d.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <div *ngIf="deals.length === 0" class="empty-state">
+  <mat-icon>inbox</mat-icon>
+  <h3>No Deals Found</h3>
+  <p>Start by creating your first deal</p>
+
+  <button mat-raised-button color="primary" routerLink="/deal-form">
+    <mat-icon>add</mat-icon>
+    Add Deal
+  </button>
+</div>
+
+  </mat-card>
+
+</div>

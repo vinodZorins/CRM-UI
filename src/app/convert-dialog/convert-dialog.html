@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Convert Lead</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- INFO SECTION -->
+  <div class="lead-info">
+    <div><strong>Name:</strong> {{ data.name }}</div>
+    <div><strong>Email:</strong> {{ data.email }}</div>
+    <div><strong>Phone:</strong> {{ data.phone }}</div>
+  </div>
+
+  <!-- FORM SECTION -->
+  <div class="form-section">
+
+    <!-- REQUIREMENT -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Requirement</mat-label>
+      <textarea matInput [(ngModel)]="requirement" rows="3"></textarea>
+    </mat-form-field>
+
+    <!-- STATUS -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="status">
+        <mat-option value="ACTIVE">Active</mat-option>
+        <mat-option value="INACTIVE">Inactive</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="cancel()">Cancel</button> &nbsp; &nbsp;
+  <button mat-raised-button color="primary" (click)="convert()">
+    Convert
+  </button>
+</mat-dialog-actions>

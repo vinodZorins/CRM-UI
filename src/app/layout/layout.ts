@@ -10,6 +10,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
+
+
+type ModuleKey = 'sales' | 'marketing' | 'support';
 
 @Component({
   selector: 'app-layout',
@@ -17,19 +21,30 @@ import { MatChipsModule } from '@angular/material/chips';
   imports: [RouterLink, RouterOutlet,
     CommonModule, MatSidenavModule, MatToolbarModule,
     MatListModule, MatIconModule, MatButtonModule,
-    MatCardModule, MatTableModule, MatInputModule, MatChipsModule, RouterLinkActive],
+    MatCardModule, MatTableModule, MatInputModule, MatChipsModule, RouterLinkActive,
+    MatMenuModule],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
 })
 export class LayoutComponent {
 
+  isCollapsed = false;
+
+  modules: Record<ModuleKey, boolean> = {
+    sales: true,
+    marketing: true,
+    support: true
+  };
 
   constructor(private router: Router) {}
 
-  isSidebarOpen = true;
+toggleModule(module: ModuleKey) {
+  this.modules[module] = !this.modules[module];
+}
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
+   toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+    console.log('Sidebar:', this.isCollapsed); // debug
   }
 
   logout() {

@@ -1,3 +1,11 @@
+<mat-card class="table-card">
+
+  <mat-card-header>
+    <mat-card-title>Leads</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
 <div class="lead-container">
 
   <!-- Search -->
@@ -11,7 +19,7 @@
 
     <!-- Name -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>Lead Name</th>
       <td mat-cell *matCellDef="let lead">{{ lead.name }}</td>
     </ng-container>
 
@@ -25,7 +33,9 @@
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Status</th>
       <td mat-cell *matCellDef="let lead">
-        <span class="status-chip" [ngClass]="getStatusClass(lead.status)">{{lead.status}}</span>
+        <span class="status-chip"
+            [ngClass]="getStatusClass(lead.status)"> {{ lead.status === 'CONVERTED' ? 'Converted' : lead.status }}
+        </span>
       </td>
     </ng-container>
 
@@ -41,6 +51,14 @@
       <td mat-cell *matCellDef="let lead">{{ lead.phone }}</td>
     </ng-container>
 
+    <!-- Requirement -->
+    <ng-container matColumnDef="requirement">
+      <th mat-header-cell *matHeaderCellDef>Requirement</th>
+      <td mat-cell *matCellDef="let lead">
+        {{ lead.requirement | slice:0:30 }}
+      </td>
+   </ng-container>
+
     <!-- Score -->
     <ng-container matColumnDef="score">
       <th mat-header-cell *matHeaderCellDef>Score</th>
@@ -52,14 +70,18 @@
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let lead">
 
-        <button mat-icon-button color="primary" [routerLink]="['/lead-form', lead.id]">
+        <button mat-icon-button color="primary" class="edit-btn" [routerLink]="['/lead-form', lead.id]">
           <mat-icon>edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="warn" (click)="deleteLead(lead.id)">
+        <button mat-icon-button color="warn" class="delete-btn" (click)="deleteLead(lead.id)">
           <mat-icon>delete</mat-icon>
         </button>
 
+        <button mat-icon-button color="primary" *ngIf="lead.status !== 'CONVERTED'" (click)="convertLead(lead)">
+        <mat-icon>swap_horiz</mat-icon>
+      </button>
+        
       </td>
     </ng-container>
 
@@ -67,6 +89,16 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
+
+  <div *ngIf="leads.length === 0" class="empty-state">
+  <mat-icon>inbox</mat-icon>
+  <h3>No Leads Found</h3>
+  <p>Add new leads to get started</p>
+
+  <button mat-raised-button color="primary" routerLink="/lead-form">
+    + Add Lead
+  </button>
+</div>
 
   <!-- Pagination -->
   <mat-paginator
@@ -77,3 +109,7 @@
     (page)="onPageChange($event)">
   </mat-paginator>
 </div>
+
+</mat-card-content>
+
+</mat-card>

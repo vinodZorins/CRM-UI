@@ -9,9 +9,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { LeadService } from '../lead.service.ts';
 import { RouterLink } from "@angular/router";
-import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog.js';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
+import { ConvertDialog } from '../../convert-dialog/convert-dialog.js';
+
+
 
 
 @Component({
@@ -27,6 +31,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatChipsModule,
     RouterLink,
     FormsModule,
+    MatCardModule
 ],
   templateUrl: './lead-list.html',
   styleUrl: './lead-list.css'
@@ -34,7 +39,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LeadList implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = [
-    'name', 'company', 'status', 'email', 'phone', 'score', 'actions'
+    'name', 'company', 'status', 'email', 'phone', 'requirement', 'score', 'actions'
   ];
 
 
@@ -94,7 +99,10 @@ export class LeadList implements OnInit, AfterViewInit {
       case 'NEW': return 'status-new';
       case 'CONTACTED': return 'status-contacted';
       case 'WON': return 'status-won';
+      case 'IN_PROGRESS': return 'status-progress';
       case 'LOST': return 'status-lost';
+      case 'CONVERTED': return 'status-converted';
+      case 'CLOSED': return 'status-closed';
       default: return '';
     }
   }
@@ -116,20 +124,49 @@ export class LeadList implements OnInit, AfterViewInit {
   // Delete
   deleteLead(id: number) {
 
-  const dialogRef = this.dialog.open(ConfirmDialog);
+  const dialogRef = this.dialog.open(ConfirmDialog, {
+    width: '350px'
+  });
 
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      this.leadService.deleteLead(id).subscribe(() => {
-  this.snackBar.open('Lead deleted successfully ', 'Close', {
-    duration: 3000,
-    panelClass: ['success-snackbar']
-  });
 
-  this.loadLeads();
-});
+      this.leadService.deleteLead(id).subscribe({
+        next: () => {
+          this.snackBar.open('Lead deleted successfully ', 'Close', {
+            duration: 3000,
+            panelClass: 'custom-dialog'
+          });
+
+          this.loadLeads();
+        },
+        error: () => {
+          this.snackBar.open('Failed to delete lead ', 'Close', {
+            duration: 3000,
+            panelClass: 'error-snackbar'
+          });
+        }
+      });
+
     }
   });
+  }
 
+    // Convert Lead to Customer
+    convertLead(lead: any) {
+
+ const dialogRef = this.dialog.open(ConvertDialog, {
+  width: '400px',
+  data: lead // send lead data
+});
+
+dialogRef.afterClosed().subscribe(result => {
+  if (result) {
+    this.leadService.convertLead(lead.id, result)
+      .subscribe(() => {
+        this.loadLeads();
+      });
+  }
+});
 }
 }
