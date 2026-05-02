@@ -1,6 +1,41 @@
 <div class="deal-container">
 
-  <!-- HEADER -->
+  <!-- STATS CARDS -->
+  <div class="stats-container">
+
+    <mat-card class="stat-card">
+      <div class="stat-icon blue">
+        <mat-icon>assessment</mat-icon>
+      </div>
+      <div>
+        <h3>{{ totalDeals }}</h3>
+        <p>Total Deals</p>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <div class="stat-icon green">
+        <mat-icon>emoji_events</mat-icon>
+      </div>
+      <div>
+        <h3>{{ wonDealsCount }}</h3>
+        <p>Won Deals</p>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <div class="stat-icon purple">
+        <mat-icon>currency_rupee</mat-icon>
+      </div>
+      <div>
+        <h3>₹{{ totalRevenue }}</h3>
+        <p>Total Revenue</p>
+      </div>
+    </mat-card>
+
+  </div>
+
+  <!-- FILTER BAR -->
   <div class="deal-header">
 
     <mat-form-field appearance="outline" class="search-field">
@@ -27,7 +62,7 @@
 
   </div>
 
-  <!-- TABLE CARD -->
+  <!-- TABLE -->
   <mat-card class="table-card">
 
     <table mat-table [dataSource]="deals" class="mat-elevation-z1">
@@ -41,7 +76,7 @@
       <!-- CUSTOMER -->
       <ng-container matColumnDef="customer">
         <th mat-header-cell *matHeaderCellDef> Customer </th>
-        <td mat-cell *matCellDef="let d"> {{ d.customerName }} </td>
+        <td mat-cell *matCellDef="let d"> {{ d.name }} </td>
       </ng-container>
 
       <!-- AMOUNT -->
@@ -81,17 +116,28 @@
 
     </table>
 
-    <div *ngIf="deals.length === 0" class="empty-state">
-  <mat-icon>inbox</mat-icon>
-  <h3>No Deals Found</h3>
-  <p>Start by creating your first deal</p>
-
-  <button mat-raised-button color="primary" routerLink="/deal-form">
-    <mat-icon>add</mat-icon>
-    Add Deal
-  </button>
-</div>
-
   </mat-card>
 
+  <!-- EMPTY STATE -->
+  <div *ngIf="deals.length === 0" class="empty-state">
+    <mat-icon>inbox</mat-icon>
+    <h3>No Deals Found</h3>
+    <p>Create your first deal</p>
+  </div>
+
+  <!-- CHARTS -->
+    <div class="charts-container">
+
+      <mat-card class="chart-card">
+        <h3>Deals Distribution</h3>
+        <canvas id="pieChart"></canvas>
+      </mat-card>
+
+      <mat-card class="chart-card">
+        <h3>Deals by Stage</h3>
+        <canvas id="barChart"></canvas>
+      </mat-card>
+
+    </div>
+    
 </div>

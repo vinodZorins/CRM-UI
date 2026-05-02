@@ -1,0 +1,38 @@
+.page {
+  padding: 20px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: white;
+  font-size: 12px;
+}
+
+.description {
+  color: black;
+}
+
+/* STATUS COLORS */
+.status-NEW { background: gray; }
+.status-ASSIGNED { background: blue; }
+.status-IN_PROGRESS { background: orange; }
+.status-RESOLVED { background: green; }
+
+/* PRIORITY COLORS */
+.priority-LOW { background: green; }
+.priority-MEDIUM { background: orange; }
+.priority-HIGH { background: red; }
+.priority-URGENT { background: darkred; }

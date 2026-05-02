@@ -1,0 +1,57 @@
+<div class="form-container">
+
+  <h2>{{id ? 'Edit Ticket' : 'Create Ticket'}}</h2>
+
+  <mat-card>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="ticket.title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="ticket.description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="ticket.priority">
+        <mat-option *ngFor="let p of priorities" [value]="p">{{p}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="ticket.status">
+        <mat-option *ngFor="let s of statuses" [value]="s">{{s}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- CUSTOMER -->
+    <mat-form-field appearance="outline">
+      <mat-label>Customer</mat-label>
+      <mat-select [(ngModel)]="ticket.customerId" name="customerId">
+        <mat-option *ngFor="let c of customers || []" [value]="c.id">
+          {{c.name || c.displayNamePrimary}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- TECHNICIAN -->
+    <mat-form-field appearance="outline">
+      <mat-label>Assign Technician</mat-label>
+      <mat-select [(ngModel)]="ticket.technicianId" name="technicianId">
+        <mat-option *ngFor="let t of technicians || []" [value]="t.id">
+          {{t.name || t.email}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="save()">
+      Create Ticket
+    </button>
+
+  </mat-card>
+
+</div>

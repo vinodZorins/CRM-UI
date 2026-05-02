@@ -1,0 +1,10 @@
+.form-container {
+  padding: 20px;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}

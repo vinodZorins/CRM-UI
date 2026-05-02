@@ -17,7 +17,7 @@ import { Deal } from '../deal.model';
 })
 export class DealKanban implements OnInit {
 
- newDeals: Deal[] = [];
+  newDeals: Deal[] = [];
   negotiationDeals: Deal[] = [];
   wonDeals: Deal[] = [];
   lostDeals: Deal[] = [];
@@ -27,6 +27,7 @@ export class DealKanban implements OnInit {
   constructor(private dealService: DealService) {}
 
   ngOnInit(): void {
+    console.log("KANBAN DEAL CALLED");
     this.loadDeals();
   }
 
@@ -37,7 +38,9 @@ export class DealKanban implements OnInit {
     this.dealService.getDeals({ page: 0, size: 100 }).subscribe({
       next: (res: any) => {
 
-        const deals: Deal[] = res?.data?.content || [];
+        const deals: Deal[] = res.content || [];
+
+        console.log("DEAL KANBAN DATA :", res);
 
         this.newDeals = deals.filter(d => d.stage === 'NEW');
         this.negotiationDeals = deals.filter(d => d.stage === 'NEGOTIATION');

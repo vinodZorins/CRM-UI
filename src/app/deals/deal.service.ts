@@ -49,4 +49,8 @@ updateStage(id: number, stage: string) {
   delete(id: number) {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
+
+  getAllCustomers() {
+    return this.http.get<any>('http://localhost:8081/api/customer');
+  }
 }

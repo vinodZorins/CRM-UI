@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class CustomerService {
 
   private API = 'http://localhost:8081/api/customer';
+  customers: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -18,20 +19,37 @@ export class CustomerService {
 
     return this.http.get<any>(this.API, { params });
   }
-
+  
   createCustomer(data: any) {
   return this.http.post(this.API, data);
-}
+  }
 
-getCustomerById(id: number) {
-  return this.http.get(`${this.API}/${id}`);
-}
+  getCustomerById(id: number) {
+    return this.http.get(`${this.API}/${id}`);
+  }
 
-updateCustomer(id: number, data: any) {
-  return this.http.put(`${this.API}/${id}`, data);
-}
+  updateCustomer(id: number, data: any) {
+    return this.http.put(`${this.API}/${id}`, data);
+  }
+  
+  delete(id: number) {
+    return this.http.delete(`${this.API}/${id}`);
+  }
+  
+  getCompanies() {
+    return this.http.get<any>('http://localhost:8081/api/company');
+  }
 
-getCompanies() {
-  return this.http.get('http://localhost:8081/api/company');
-}
+
+  getCustomerTypes() {
+  return this.http.get<string[]>('http://localhost:8081/api/enums/customer-types');
+  }
+
+  getStatuses() {
+    return this.http.get<string[]>('http://localhost:8081/api/enums/customer-status');
+  }
+
+  getLanguages() {
+    return this.http.get<string[]>('http://localhost:8081/api/enums/customer-languages');
+  }
 }

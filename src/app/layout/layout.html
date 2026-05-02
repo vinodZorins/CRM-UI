@@ -1,5 +1,8 @@
 <mat-sidenav-container class="crm-container">
 
+  <!-- <div class="global-loader" *ngIf="loader.loading$ | async">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div> -->
   <!-- SIDEBAR -->
   <mat-sidenav
     mode="side"
@@ -17,6 +20,24 @@
     <!-- NAV -->
     <mat-nav-list>
 
+      <div class="module-title" (click)="toggleModule('home')">
+        <mat-icon>expand_more</mat-icon>
+        <span>Home</span>
+      </div>
+
+      <div *ngIf="modules.home">
+
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+
+        <a mat-list-item routerLink="/reports" routerLinkActive="active">
+          <mat-icon matListItemIcon>assessment</mat-icon>
+          <span matListItemTitle>Reports</span>
+        </a>
+
+      </div>
       <!-- ===== SALES MODULE ===== -->
       <div class="module-title" (click)="toggleModule('sales')">
         <mat-icon>expand_more</mat-icon>
@@ -24,11 +45,6 @@
       </div>
 
       <div *ngIf="modules.sales">
-
-        <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
-          <mat-icon matListItemIcon>dashboard</mat-icon>
-          <span matListItemTitle>Dashboard</span>
-        </a>
 
         <a mat-list-item routerLink="/leads" routerLinkActive="active">
           <mat-icon matListItemIcon>trending_up</mat-icon>
@@ -45,9 +61,14 @@
           <span matListItemTitle>Deals</span>
 
           <!-- BADGE -->
-          <span class="badge">5</span>
+          <!-- <span class="badge">5</span> -->
         </a>
 
+        <a mat-list-item routerLink="/deal-kanban" routerLinkActive="active">
+          <mat-icon matListItemIcon>view_kanban</mat-icon>
+          <span matListItemTitle>Deal Board</span>
+        </a>
+        
       </div>
 
       <!-- ===== MARKETING MODULE ===== -->
@@ -78,10 +99,30 @@
 
       <div *ngIf="modules.support">
 
+        <a mat-list-item routerLink="/tickets" routerLinkActive="active">
+          <mat-icon matListItemIcon>support_agent</mat-icon>
+          <span matListItemTitle>Tickets</span>
+        </a>
+
+        <a mat-list-item routerLink="/ticket-form" routerLinkActive="active">
+          <mat-icon matListItemIcon>add</mat-icon>
+          <span matListItemTitle>Create Ticket</span>
+        </a>
+
+        <a mat-list-item routerLink="/ticket-kanban" routerLinkActive="active">
+          <mat-icon matListItemIcon>view_kanban</mat-icon>
+          <span matListItemTitle>Ticket Board</span>
+        </a>
+
+        <a mat-list-item routerLink="/technician-dashboard" routerLinkActive="active">
+          <mat-icon matListItemIcon>view_kanban</mat-icon>
+          <span matListItemTitle>Technician Dashboard</span>
+        </a>
+
         <a mat-list-item routerLink="/tasks" routerLinkActive="active">
           <mat-icon matListItemIcon>task</mat-icon>
           <span matListItemTitle>Tasks</span>
-          <span class="badge red">3</span>
+          <!-- <span class="badge red">3</span> -->
         </a>
 
         <a mat-list-item routerLink="/calls" routerLinkActive="active">

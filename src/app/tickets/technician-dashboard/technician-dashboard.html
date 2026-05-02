@@ -1,0 +1,27 @@
+<div class="page">
+  <h2>My Tickets</h2>
+
+  <div *ngIf="tickets.length === 0">No Tickets Assigned</div>
+  <div *ngFor="let t of tickets" class="card">
+
+  <h3>{{ t.title }}</h3>
+  <p>{{ t.description }}</p>
+  <p>{{t.priority}}</p>
+  
+  <p><b>Status:</b> {{ t.status }}</p>
+
+  <!-- ACTION BUTTONS -->
+  <div class="actions">
+
+    <button *ngIf="t.status === 'ASSIGNED'"(click)="updateStatus(t.id, 'IN_PROGRESS')">
+      Start Work
+    </button>
+
+    <button *ngIf="t.status === 'IN_PROGRESS'"(click)="updateStatus(t.id, 'RESOLVED')">
+      Resolve
+    </button>
+
+  </div>
+
+</div>
+</div>

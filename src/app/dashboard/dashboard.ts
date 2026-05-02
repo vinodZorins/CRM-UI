@@ -15,7 +15,6 @@ import { DashboardServiceTs } from './dashboard.service.ts';
 import Chart from 'chart.js/auto';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatOption } from "@angular/material/select";
 
 @Component({
   selector: 'app-dashboard',

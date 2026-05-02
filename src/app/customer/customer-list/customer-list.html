@@ -12,6 +12,17 @@
       <mat-label>Search</mat-label>
       <input matInput [(ngModel)]="search" (input)="onSearchChange()">
     </mat-form-field>
+
+    <!-- Status Box -->
+     <mat-form-field appearance="outline" class="filter-box">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="status" (selectionChange)="onSearchChange()">
+        <mat-option value="">All</mat-option>
+        <mat-option value="ACTIVE">Active</mat-option>
+        <mat-option value="INACTIVE">Inactive</mat-option>
+      </mat-select>
+    </mat-form-field>
+
   <!-- TABLE -->
   <table mat-table [dataSource]="customers" class="mat-elevation-z8">
 
@@ -40,9 +51,34 @@
       <td mat-cell *matCellDef="let c">{{ c.requirement }}</td>
     </ng-container>
 
+    
+  <!-- ACTIONS -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let c">
+
+          <button mat-icon-button color="primary" [routerLink]="['/customer-form', c.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" (click)="deleteCustomer(c.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+
     <tr mat-header-row *matHeaderRowDef="['name','email','phone','company','requirement']"></tr>
     <tr mat-row *matRowDef="let row; columns: ['name','email','phone','company','requirement'];"></tr>
   </table>
+
+    <!-- EMPTY STATE -->
+    <div *ngIf="customers.length === 0" class="empty-state">
+      <mat-icon>person_off</mat-icon>
+      <h3>No Customers Found</h3>
+      <p>Create your first customer to get started</p>
+    </div>
 
   <!-- PAGINATOR -->
   <mat-paginator

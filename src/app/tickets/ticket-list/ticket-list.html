@@ -1,0 +1,89 @@
+<div class="page">
+
+  <div class="page-header">
+    <h2>Support Tickets</h2>
+
+    <button mat-raised-button color="primary" routerLink="/ticket-form">
+      + Add Ticket
+    </button>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="search" name="search" (input)="onFilterChange()">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="status" name="status" (selectionChange)="onFilterChange()">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let s of statuses" [value]="s">{{s}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="priority" name="priority" (selectionChange)="onFilterChange()">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let p of priorities" [value]="p">{{p}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+  <!-- TABLE -->
+  <table mat-table [dataSource]="tickets" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let t">{{t.title}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="customer">
+      <th mat-header-cell *matHeaderCellDef>Customer</th>
+      <td mat-cell *matCellDef="let t">{{t.customerName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef>Priority</th>
+      <td mat-cell *matCellDef="let t">
+        <span class="badge priority-{{t.priority}}">
+          {{t.priority}}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let t">
+        <span class="badge status-{{t.status}}">
+          {{t.status}}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let t">
+        <span class="description description-{{t.description}}">
+          {{t.description}}
+        </span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['title','customer','priority','status', 'description']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['title','customer','priority','status', 'description'];"></tr>
+
+  </table>
+
+  <!-- PAGINATION -->
+  <mat-paginator
+    [length]="totalElements"
+    [pageSize]="size"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+
+</div>

@@ -11,9 +11,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
+import { LoaderService } from '../interceptors/loader.service';
 
 
-type ModuleKey = 'sales' | 'marketing' | 'support';
+type ModuleKey = 'home' | 'sales' | 'marketing' | 'support';
 
 @Component({
   selector: 'app-layout',
@@ -31,12 +32,15 @@ export class LayoutComponent {
   isCollapsed = false;
 
   modules: Record<ModuleKey, boolean> = {
+    home: true,
     sales: true,
     marketing: true,
     support: true
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private loader: LoaderService
+  ) {}
 
 toggleModule(module: ModuleKey) {
   this.modules[module] = !this.modules[module];

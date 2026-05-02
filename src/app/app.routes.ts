@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './auth-guard';
+import { TechnicianDashboard } from './tickets/technician-dashboard/technician-dashboard';
 
 export const routes: Routes = [
   { 
     path: 'login', 
     loadComponent: () => import('./auth/login/login').then(m => m.LoginComponent)
   },
+  
   { 
     path: '', 
     loadComponent: () => import('./layout/layout').then(m => m.LayoutComponent), 
@@ -90,10 +92,39 @@ export const routes: Routes = [
         canActivate: [authGuard]
       },
 
+      {
+        path: 'tickets',
+        loadComponent: () => import('./tickets/ticket-list/ticket-list').then(m => m.TicketList),
+        canActivate: [authGuard]
+      },
+
+      {
+        path: 'ticket-form',
+        loadComponent: () => import('./tickets/ticket-form/ticket-form').then(m => m.TicketForm),
+        canActivate: [authGuard]
+      },
+
+      {
+        path: 'ticket-form/:id',
+        loadComponent: () => import('./tickets/ticket-form/ticket-form').then(m => m.TicketForm),
+        canActivate: [authGuard]
+      },
+
+      {
+        path: 'ticket-kanban',
+        loadComponent: () =>import('./tickets/ticket-kanban/ticket-kanban').then(m => m.TicketKanban),
+        canActivate: [authGuard]
+      },
+
+      {
+        path: 'technician-dashboard',
+        component: TechnicianDashboard,
+        canActivate: [authGuard]
+      },
+
       // Empty path redirects to dashboard if logged in
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       
-      // Wildcard MUST be at the very bottom
       { path: '**', redirectTo: 'dashboard' } 
     ]
   }

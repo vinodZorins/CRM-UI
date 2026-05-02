@@ -1,53 +1,193 @@
-<div class="form-container">
+<div class="customer-form-page">
 
-  <h2>{{ id ? 'Edit Customer' : 'Add Customer' }}</h2>
+  <mat-card class="form-card">
 
-  <form (ngSubmit)="save()">
-
-    <!-- NAME -->
-    <div class="field">
-      <label>Name</label>
-      <input type="text" [(ngModel)]="customer.name" name="name" required>
+    <!-- HEADER -->
+    <div class="form-header">
+      <h2>{{ isEdit ? 'Edit Customer' : 'Create Customer' }}</h2>
     </div>
 
-    <!-- EMAIL -->
-    <div class="field">
-      <label>Email</label>
-      <input type="email" [(ngModel)]="customer.email" name="email" required>
-    </div>
+    <form #form="ngForm" (ngSubmit)="saveCustomer(form)">
 
-    <!-- PHONE -->
-    <div class="field">
-      <label>Phone</label>
-      <input type="number" [(ngModel)]="customer.phone" name="phone">
-    </div>
+      <!-- ================= BASIC INFO ================= -->
+      <div class="section">
+        <h3>Basic Information</h3>
 
-    <!-- COMPANY -->
-    <div class="field">
-      <label>Company</label>
-      <select [(ngModel)]="customer.companyId" name="companyId">
-        <option value="">Select Company</option>
-        <option *ngFor="let c of companies" [value]="c.id">
-          {{ c.companyName }}
-        </option>
-      </select>
-    </div>
+        <div class="grid">
 
-    <!-- REQUIREMENT -->
-    <div class="field">
-      <label>Requirement</label>
-      <textarea
-        [(ngModel)]="customer.requirement"
-        name="requirement"
-        rows="4"
-        placeholder="Enter customer requirement...">
-      </textarea>
-    </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="customer.name" name="name" required #name="ngModel">
+            <mat-error *ngIf="name.invalid && name.touched">Name is required</mat-error>
+          </mat-form-field>
 
-    <!-- BUTTON -->
-    <button type="submit">
-      {{ id ? 'Update' : 'Create' }}
-    </button>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="customer.email" name="email" required email #email="ngModel">
+            <mat-error *ngIf="email.errors?.['required']">Email required</mat-error>
+            <mat-error *ngIf="email.errors?.['email']">Invalid email</mat-error>
+          </mat-form-field>
 
-  </form>
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput type="number" [(ngModel)]="customer.phone" name="phone" required #phone="ngModel">
+            <mat-error *ngIf="phone.invalid && phone.touched">Phone required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="customer.status" name="status" required panelClass="dropdown-fix">
+              <mat-option *ngFor="let s of statuses" [value]="s">{{ s }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Language</mat-label>
+            <mat-select [(ngModel)]="customer.customerLanguage" name="customerLanguage">
+              <mat-option *ngFor="let l of languages" [value]="l">{{ l }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Requirement</mat-label>
+            <textarea matInput rows="3" [(ngModel)]="customer.requirement" name="requirement"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Communication Channels</mat-label>
+            
+            <mat-select [(ngModel)]="customer.commChannels" name="commChannels" multiple>
+
+              <mat-option value="EMAIL">Email</mat-option>
+              <mat-option value="SMS">SMS</mat-option>
+              <mat-option value="WHATSAPP">WhatsApp</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- ================= COMPANY ================= -->
+      <div class="section">
+        <h3>Company Details</h3>
+
+        <div class="grid">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Company</mat-label>
+
+            <mat-select [(ngModel)]="customer.companyId" name="companyId" required>
+
+              <mat-option *ngFor="let c of companies" [value]="c.id">
+                {{ c.companyName  || c.name }}
+              </mat-option>
+
+            </mat-select>
+
+            <mat-error *ngIf="!customer.companyId">
+              Company is required
+            </mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Company Name (Arabic)</mat-label>
+            <input matInput [(ngModel)]="customer.companyNameArabic" name="companyNameArabic">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Customer Type</mat-label>
+            <mat-select [(ngModel)]="customer.customerType" name="customerType">
+              <mat-option *ngFor="let t of customerTypes" [value]="t">{{ t }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Customer Number</mat-label>
+            <input matInput [(ngModel)]="customer.customerNumber" name="customerNumber">
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <!-- ================= FINANCE ================= -->
+      <div class="section">
+        <h3>Finance</h3>
+
+        <div class="grid">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Currency</mat-label>
+            <input matInput [(ngModel)]="customer.defaultCurrency" name="defaultCurrency">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Credit Limit</mat-label>
+            <input matInput type="number" [(ngModel)]="customer.creditLimit" name="creditLimit">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Opening Balance</mat-label>
+            <input matInput type="number" [(ngModel)]="customer.openingBalance" name="openingBalance">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Payment Terms</mat-label>
+            <input matInput [(ngModel)]="customer.paymentTerms" name="paymentTerms">
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <!-- ================= ADDRESS ================= -->
+      <div class="section">
+        <h3>Billing Address</h3>
+
+        <div class="grid">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Building No</mat-label>
+            <input matInput [(ngModel)]="customer.billBuildingNo" name="billBuildingNo">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Street</mat-label>
+            <input matInput [(ngModel)]="customer.billStreet" name="billStreet">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>District</mat-label>
+            <input matInput [(ngModel)]="customer.billDistrict" name="billDistrict">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput [(ngModel)]="customer.billCity" name="billCity">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Zip</mat-label>
+            <input matInput [(ngModel)]="customer.billZip" name="billZip">
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <!-- ================= ACTIONS ================= -->
+      <div class="actions">
+
+        <button mat-raised-button color="primary" type="submit">
+          {{ isEdit ? 'Update Customer' : 'Save Customer' }}
+        </button>
+
+        <button mat-button routerLink="/customer">
+          Cancel
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card>
+
 </div>

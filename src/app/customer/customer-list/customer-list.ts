@@ -6,9 +6,10 @@ import { MatTableModule } from '@angular/material/table';
 import { CustomerService } from '../customer.service';
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardContent, MatCard } from "@angular/material/card";
-import { MatGridTile } from "@angular/material/grid-list";
 import { RouterLink } from '@angular/router';
+import { MatOption, MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 
 @Component({
@@ -23,11 +24,18 @@ import { RouterLink } from '@angular/router';
     MatPaginator,
     MatInputModule,
     RouterLink,
+    MatSelectModule,
+    MatOption,
+    MatIconModule,
+    MatCardModule,
 ],
   templateUrl: './customer-list.html',
   styleUrl: './customer-list.css',
 })
 export class Customer implements OnInit {
+
+  displayedColumns: string[] = ['name', 'phone', 'company', 'status', 'action'];
+  status = '';
 
   customers: any[] = [];
   search = '';
@@ -63,5 +71,11 @@ export class Customer implements OnInit {
     this.page = event.pageIndex;
     this.size = event.pageSize;
     this.loadCustomers();
+  }
+
+  deleteCustomer(id: number) {
+    this.service.delete(id).subscribe(() => {
+        this.loadCustomers();
+      });
   }
 }
